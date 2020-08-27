@@ -1,0 +1,117 @@
+Microsoft Windows [Version 10.0.18363.900]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\ehann>cd c:/"Program Files"/MongoDB/Server/<version_number>/bin/
+The system cannot find the file specified.
+
+C:\Users\ehann>cd c:\"Program Files"\MongoDB\Server\4.2\bin\
+
+c:\Program Files\MongoDB\Server\4.2\bin>mongo.exe
+MongoDB shell version v4.2.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("e7dc1585-ca32-4af9-87ab-7febdbe21b84") }
+MongoDB server version: 4.2.8
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        http://docs.mongodb.org/
+Questions? Try the support group
+        http://groups.google.com/group/mongodb-user
+Server has startup warnings:
+2020-07-17T11:24:59.278-0700 I  CONTROL  [initandlisten]
+2020-07-17T11:24:59.278-0700 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-07-17T11:24:59.278-0700 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-07-17T11:24:59.278-0700 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> show dbs
+admin       0.000GB
+config      0.000GB
+local       0.000GB
+mongo_demo  0.000GB
+> use mongo_demo
+switched to db mongo_demo
+> show collections
+ninjas
+> db.ninjas.find()
+{ "_id" : ObjectId("5f11f37b0cf791729b12f2c5"), "location" : "cairo" }
+{ "_id" : ObjectId("5f11f8d05f5b17b083211ff5"), "name" : "Trey", "belt" : "black", "status" : "awesome", "location" : "cairo" }
+> db.ninjas.find({_id: ObjectId("5f11f37b0cf791729b12f2c5"})
+... exit
+... ^C
+
+> db.ninjas.find({_id: ObjectId("5f11f37b0cf791729b12f2c5")})
+{ "_id" : ObjectId("5f11f37b0cf791729b12f2c5"), "location" : "cairo" }
+> dbs
+2020-07-17T13:14:08.634-0700 E  QUERY    [js] uncaught exception: ReferenceError: dbs is not defined :
+@(shell):1:1
+> show dbs
+admin       0.000GB
+config      0.000GB
+local       0.000GB
+mongo_demo  0.000GB
+> use my_first_db
+switched to db my_first_db
+> db.createCollection('students')
+{ "ok" : 1 }
+> db.students.insert({name: 'Emad', home_state: 'california', lucky_number: 10, birthday: {month: 9, day:9, year:1986}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: 'indi', home_state: 'california', lucky_number: 7, birthday: {month:8, day:8, year:1982}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: 'joshua', home_state: 'idaho', lucky number:1, birthday: {month:7, day:7, year:1990}})
+2020-07-17T13:19:51.845-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:63
+> db.students.insert({name: 'joshua', home_state: 'idaho', lucky number: 1, birthday: {month:7, day:7, year:1990}})
+2020-07-17T13:20:19.493-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:63
+> db.students.insert({name: 'joshua', home_state: 'idaho', lucky_number: 1, birthday: {month:7, day:7, year:1990}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: 'donald', home_state: 'california', lucky_number: 2, birthday: {month:6, day:6, year:1973}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: 'luca', home_state: 'california', lucky_number:3, birthday: {month:5, day:5, year:1986}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("5f12072ca96a910b5738be12"), "name" : "Emad", "home_state" : "california", "lucky_number" : 10, "birthday" : { "month" : 9, "day" : 9, "year" : 1986 } }
+{ "_id" : ObjectId("5f120782a96a910b5738be13"), "name" : "indi", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 8, "year" : 1982 } }
+{ "_id" : ObjectId("5f120835a96a910b5738be14"), "name" : "joshua", "home_state" : "idaho", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 7, "year" : 1990 } }
+{ "_id" : ObjectId("5f120870a96a910b5738be15"), "name" : "donald", "home_state" : "california", "lucky_number" : 2, "birthday" : { "month" : 6, "day" : 6, "year" : 1973 } }
+{ "_id" : ObjectId("5f120919a96a910b5738be16"), "name" : "luca", "home_state" : "california", "lucky_number" : 3, "birthday" : { "month" : 5, "day" : 5, "year" : 1986 } }
+> db.students.find({home_state: 'california'})
+{ "_id" : ObjectId("5f12072ca96a910b5738be12"), "name" : "Emad", "home_state" : "california", "lucky_number" : 10, "birthday" : { "month" : 9, "day" : 9, "year" : 1986 } }
+{ "_id" : ObjectId("5f120782a96a910b5738be13"), "name" : "indi", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 8, "year" : 1982 } }
+{ "_id" : ObjectId("5f120870a96a910b5738be15"), "name" : "donald", "home_state" : "california", "lucky_number" : 2, "birthday" : { "month" : 6, "day" : 6, "year" : 1973 } }
+{ "_id" : ObjectId("5f120919a96a910b5738be16"), "name" : "luca", "home_state" : "california", "lucky_number" : 3, "birthday" : { "month" : 5, "day" : 5, "year" : 1986 } }
+> db.students.find({lucky_number: {$gt:3}})
+{ "_id" : ObjectId("5f12072ca96a910b5738be12"), "name" : "Emad", "home_state" : "california", "lucky_number" : 10, "birthday" : { "month" : 9, "day" : 9, "year" : 1986 } }
+{ "_id" : ObjectId("5f120782a96a910b5738be13"), "name" : "indi", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 8, "year" : 1982 } }
+> db.students.find({lucky_number: {$lte:10}})
+{ "_id" : ObjectId("5f12072ca96a910b5738be12"), "name" : "Emad", "home_state" : "california", "lucky_number" : 10, "birthday" : { "month" : 9, "day" : 9, "year" : 1986 } }
+{ "_id" : ObjectId("5f120782a96a910b5738be13"), "name" : "indi", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 8, "day" : 8, "year" : 1982 } }
+{ "_id" : ObjectId("5f120835a96a910b5738be14"), "name" : "joshua", "home_state" : "idaho", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 7, "year" : 1990 } }
+{ "_id" : ObjectId("5f120870a96a910b5738be15"), "name" : "donald", "home_state" : "california", "lucky_number" : 2, "birthday" : { "month" : 6, "day" : 6, "year" : 1973 } }
+{ "_id" : ObjectId("5f120919a96a910b5738be16"), "name" : "luca", "home_state" : "california", "lucky_number" : 3, "birthday" : { "month" : 5, "day" : 5, "year" : 1986 } }
+> db.students.find({lucky_number: {$gte:1} {$lte:9}})
+2020-07-17T13:30:15.855-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:41
+> db.students.find().update({$set: {interests: {'coding', 'brunch', 'mongoDb'}}})
+2020-07-17T13:35:39.062-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:54
+> db.students.update($set: {interests: {'coding', 'brunch', 'mongoDb'}})
+2020-07-17T13:38:59.966-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:23
+> db.students.update($set: {interests: ['coding', 'brunch', 'mongoDb']})
+2020-07-17T13:39:27.078-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:23
+>
+
+
